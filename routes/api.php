@@ -15,7 +15,7 @@ use App\Http\Controllers\Auth\TokenController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/auth/user', function (Request $request) {
     return $request->user();
 });
 
