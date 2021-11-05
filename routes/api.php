@@ -24,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user/posts', function (Request $request
 });
 
 Route::post('/auth/token',[TokenController::class,'store']);
+Route::delete('/auth/token',[TokenController::class,'destroy']);

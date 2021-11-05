@@ -7,7 +7,13 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 
 class TokenController extends Controller
-{
+{   
+
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum'])->only('destroy');
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -24,4 +30,12 @@ class TokenController extends Controller
         ];
 
     }
+
+    public function destroy(Request $request)
+    {
+        auth()->user()->tokens()->where('name', $request->deviceID)->delete();
+
+        return response()->json(['message' => 'Token revoked']);
+    }
+
 }
